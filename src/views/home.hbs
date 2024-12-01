@@ -2,6 +2,14 @@
 {{#*inline "content"}}
 <!--  Row 1 -->
 <div class="row">
+  {{#if user }}
+  <div class="card-body p-4">
+    <h4 class="card-title">
+      Olá {{ user.username }}!
+      <p class="lead">{{ user.username }}'s friend {{ user.pet.name }}</p>
+    </h4>
+  </div>
+  {{/if}}
   <div class="col-lg-8 d-flex align-items-strech">
     <div class="card w-100">
       <div class="card-body">

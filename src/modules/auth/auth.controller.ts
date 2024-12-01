@@ -29,13 +29,6 @@ export class AuthController {
   }
 
   @UseGuards(AuthenticatedGuard)
-  @Get('/home')
-  @Render('home')
-  getHome(@Request() req) {
-    return { user: req.user };
-  }
-
-  @UseGuards(AuthenticatedGuard)
   @Get('/profile')
   @Render('auth/profile')
   getProfile(@Request() req) {

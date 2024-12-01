@@ -28,6 +28,25 @@ export class AuthExceptionFilter implements ExceptionFilter {
         'loginError',
         'Usuário e/ou senha incorretos! Tente novamente.',
       );
+      response.redirect('/auth/login');
+    } else {
+      response.redirect('/error');
+    }
+  }
+}
+
+@Catch(HttpException)
+export class AuthHomeExceptionFilter implements ExceptionFilter {
+  catch(exception: HttpException, host: ArgumentsHost) {
+    const ctx = host.switchToHttp();
+    const response = ctx.getResponse<Response>();
+    const request = ctx.getRequest<IRequestFlash>();
+
+    if (
+      exception instanceof UnauthorizedException ||
+      exception instanceof ForbiddenException
+    ) {
+      request.flash('loginError', 'Usuário não está logado! Tente novamente.');
       response.redirect('/');
     } else {
       response.redirect('/error');
