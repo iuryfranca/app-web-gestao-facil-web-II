@@ -11,6 +11,8 @@ import { flashErrors } from './common/helpers/flash-errors';
 import { hbsRegisterHelpers } from './common/helpers/hbs-functions';
 import flash = require('connect-flash');
 
+declare const module: any;
+
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
@@ -37,6 +39,11 @@ async function bootstrap() {
   app.useGlobalFilters(new NotFoundExceptionFilter());
 
   await app.listen(3000);
+
+  if (module.hot) {
+    module.hot.accept();
+    module.hot.dispose(() => app.close());
+  }
 }
 
 bootstrap();
