@@ -25,6 +25,12 @@ export class UsersService {
         password: 'guess',
         pet: { name: 'jenny', picId: 3 },
       },
+      {
+        userId: 4,
+        username: 'iury',
+        password: 'iury',
+        pet: { name: 'Cookie', picId: 4 },
+      },
     ];
   }
 
